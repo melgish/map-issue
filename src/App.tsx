@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useRef } from 'react';
+import MapView from '@arcgis/core/views/MapView';
+import Map from '@arcgis/core/Map';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import esriConfig from '@arcgis/core/config.js';
+esriConfig.assetsPath = './assets';
+
+const App = () => {
+  const divRef = useRef<any>();
+
+  useEffect(() => {
+    const map = new Map({ basemap: 'streets-vector' });
+    new MapView({ map, zoom: 3, center: [-95, 35], container: divRef.current });
+    return () => map.destroy();
+  }, []);
+
+  return <div ref={divRef} className="MapView"></div>;
 }
 
 export default App;
