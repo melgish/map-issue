@@ -10,7 +10,7 @@ Map does not display when run in production mode (npm run build).  Map is
 created but tiles are not requested.
 
 Issue is not present in 4.22.2
-# Buiid
+# Build/Run Production
 
 ```bash
 # create the production build
@@ -22,7 +22,7 @@ npm i --global serve
 serve -s build
 ```
 
-# Development
+# Build/Run Development
 ```bash
 npm ci
 npm start
